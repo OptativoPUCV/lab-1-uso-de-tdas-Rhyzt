@@ -41,8 +41,8 @@ debes reservar memoria para cada elemento que agregues.
 Al finalizar retorna la lista creada.
 */
 
-List* crea_lista() {
-    List* L = create_list();
+List *crea_lista() {
+    List *L = create_list();
     for (int i = 0 ; i < 10 ; i++) {
         int* num = malloc(sizeof(int));
         *num = i+1;
@@ -58,7 +58,7 @@ retorne la suma de sus elementos.
 */
 int sumaLista(List *L) {
     int sum = 0;
-    void* ptr = first(L);
+    void *ptr = first(L);
     while(ptr != NULL) {
        sum += *(int *)ptr;
        ptr = next(L);
@@ -75,8 +75,13 @@ Asume que popCurrent luego de eliminar un elemento se
 posiciona en el elemento anterior.
 */
 
-void eliminaElementos(List*L, int elem){
-
+void eliminaElementos(List *L, int elem){
+    void *ptr = first(L);
+    while (ptr != NULL) {
+        if (*(int *)ptr == elem)
+            popCurrent(L);
+        ptr = next(L);
+    }
 }
 
 /*
